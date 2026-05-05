@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepayan Thakur | Creative Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#312e81',
+                        },
+                        dark: '#0f172a',
+                        surface: '#f8fafc',
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0,0,0,0.05)',
+                        'hover': '0 30px 60px -15px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP & Lenis Smooth Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Lenis Smooth Scroll requires these */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* Norebro Style Utilities */
+        .norebro-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .norebro-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0f172a;
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .norebro-btn:hover {
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+        .norebro-btn:hover::after {
+            transform: scaleY(1);
+        }
+
+        .norebro-link {
+            position: relative;
+            display: inline-block;
+        }
+        .norebro-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .norebro-link:hover::after {
+            width: 100%;
+        }
+
+        /* Portfolio Grid Hover */
+        .portfolio-card {
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+        .portfolio-image {
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+        .portfolio-overlay {
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 50%, transparent 100%);
+        }
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .portfolio-content {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition-delay: 0.1s;
+        }
+        .portfolio-card:hover .portfolio-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 2px solid #4f46e5;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover::before {
+            background-color: #4f46e5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-400 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-xl font-bold tracking-tight text-dark flex items-center gap-2">
+                        <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center text-white text-sm">D</div>
+                        Thakur.
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#about" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors norebro-link">About</a>
+                        <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors norebro-link">Skills</a>
+                        <a href="#experience" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors norebro-link">Experience</a>
+                        <a href="#projects" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors norebro-link">Portfolio</a>
+                        <a href="#contact" class="px-5 py-2.5 text-sm font-semibold text-brand-600 border border-brand-600 rounded-full hover:bg-brand-600 hover:text-white transition-colors duration-300">Let's Talk</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-dark focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-6 pt-4 pb-6 space-y-4">
+                <a href="#about" class="mobile-link block text-base font-medium text-slate-600">About</a>
+                <a href="#skills" class="mobile-link block text-base font-medium text-slate-600">Skills</a>
+                <a href="#experience" class="mobile-link block text-base font-medium text-slate-600">Experience</a>
+                <a href="#projects" class="mobile-link block text-base font-medium text-slate-600">Portfolio</a>
+                <a href="#contact" class="mobile-link block text-base font-medium text-brand-600 pt-2">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Slider Style) -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden bg-surface">
+        <!-- Abstract minimal background shapes -->
+        <div class="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-brand-100 blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-blue-100 blur-3xl opacity-50 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-6 overflow-hidden">
+                <span class="hero-intro inline-block px-4 py-1.5 rounded-full bg-white text-brand-600 text-sm font-semibold tracking-wide shadow-sm border border-gray-100">
+                    AI & ML Specialist
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold text-dark tracking-tight leading-[1.1] mb-6">
+                <div class="overflow-hidden"><span class="hero-title block">Creative Solutions</span></div>
+                <div class="overflow-hidden"><span class="hero-title block text-brand-600">Through Data.</span></div>
+            </h1>
+            
+            <p class="hero-subtext text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Hi, I'm <strong class="text-dark font-semibold">Deepayan Thakur</strong>. A passionate Data Scientist and ML Engineer building scalable intelligence models and clean web applications.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 overflow-hidden">
+                <div class="hero-btn">
+                    <a href="#projects" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-600 text-white rounded-full font-semibold transition-all hover:bg-brand-700 hover:shadow-lg hover:-translate-y-1">
+                        View Portfolio
+                    </a>
+                </div>
+                <div class="hero-btn">
+                    <a href="https://github.com/Deepayan-Thakur" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-dark border border-gray-200 rounded-full font-semibold transition-all hover:border-dark hover:bg-gray-50">
+                        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="gs-reveal relative">
+                    <div class="absolute -left-4 -top-4 w-24 h-24 bg-brand-50 rounded-tl-3xl -z-10"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6">About Me</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        Pursuing a B.Tech in CSE (AI & ML) from Sharda University. My tech journey is defined by a dedication to building scalable AI solutions to solve real-world problems.
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+                        With hands-on experience from internships at DPIIT, DRDO, and NHAI, I am proficient in Python, Deep Learning, and Data Science. I am eager to contribute to innovative teams and bring concepts into production.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-8 pt-6 border-t border-gray-100">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Email</span>
+                            <a href="mailto:deepayankv8@gmail.com" class="text-dark font-medium norebro-link">deepayankv8@gmail.com</a>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Location</span>
+                            <span class="text-dark font-medium">New Delhi, India</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 gs-reveal">
+                    <!-- Stat Card -->
+                    <div class="bg-surface p-8 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                            <i data-lucide="brain-circuit" class="text-brand-600 w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-2">AI & ML</h3>
+                        <p class="text-sm text-slate-500">Deep learning, CNNs, predictive modeling.</p>
+                    </div>
+                    
+                    <div class="bg-surface p-8 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow sm:mt-12">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                            <i data-lucide="database" class="text-brand-600 w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-2">Data Science</h3>
+                        <p class="text-sm text-slate-500">Data integration, analytics, and visualization.</p>
+                    </div>
+                    
+                    <div class="bg-surface p-8 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                            <i data-lucide="code" class="text-brand-600 w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-2">Development</h3>
+                        <p class="text-sm text-slate-500">Python, Java, C, HTML/CSS, SQL databases.</p>
+                    </div>
+                    
+                    <div class="bg-surface p-8 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow sm:mt-12">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6">
+                            <i data-lucide="palette" class="text-brand-600 w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-2">Creative</h3>
+                        <p class="text-sm text-slate-500">Creative problem solving, UI design sense.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative bg-surface border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Professional Skills</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">A comprehensive overview of my technical expertise and core competencies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Category 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 gs-reveal">
+                    <h3 class="text-lg font-bold text-dark mb-6 border-b border-gray-100 pb-4">Programming</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between"><span class="text-slate-600 font-medium">Python</span><span class="text-brand-600 text-sm">Advanced</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-600 font-medium">SQL</span><span class="text-brand-600 text-sm">Advanced</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-600 font-medium">Java</span><span class="text-slate-400 text-sm">Intermediate</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-600 font-medium">C</span><span class="text-slate-400 text-sm">Intermediate</span></div>
+                        <div class="flex items-center justify-between"><span class="text-slate-600 font-medium">HTML & CSS</span><span class="text-slate-400 text-sm">Intermediate</span></div>
+                    </div>
+                </div>
+
+                <!-- Skill Category 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 gs-reveal">
+                    <h3 class="text-lg font-bold text-dark mb-6 border-b border-gray-100 pb-4">Tools & Technology</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-surface text-slate-600 rounded-lg text-sm font-medium border border-gray-100">AI & ML</span>
+                        <span class="px-4 py-2 bg-surface text-slate-600 rounded-lg text-sm font-medium border border-gray-100">Deep Learning</span>
+                        <span class="px-4 py-2 bg-surface text-slate-600 rounded-lg text-sm font-medium border border-gray-100">Git & GitHub</span>
+                        <span class="px-4 py-2 bg-surface text-slate-600 rounded-lg text-sm font-medium border border-gray-100">Data Analytics</span>
+                        <span class="px-4 py-2 bg-surface text-slate-600 rounded-lg text-sm font-medium border border-gray-100">MS Office Suite</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 gs-reveal">
+                    <h3 class="text-lg font-bold text-dark mb-6 border-b border-gray-100 pb-4">Core Competencies</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+                            <span class="text-slate-600">Creative problem solving</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+                            <span class="text-slate-600">Project management</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+                            <span class="text-slate-600">Data interpretation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-600 mt-0.5 shrink-0"></i>
+                            <span class="text-slate-600">Team Collaboration</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education (Timeline) -->
+    <section id="experience" class="py-24 relative bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Experience -->
+                <div>
+                    <h2 class="text-3xl font-bold text-dark mb-10 gs-reveal">Experience</h2>
+                    <div class="relative border-l border-gray-200 ml-3 space-y-10">
+                        
+                        <!-- Exp 1 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 text-brand-600 text-xs font-bold mb-3">Jun 2025 - Aug 2025</span>
+                            <h3 class="text-xl font-bold text-dark">Data Analyst Intern</h3>
+                            <h4 class="text-sm font-medium text-slate-500 mb-3">DPIIT, New Delhi</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Developed an automated HSN-based Trade Data Fetcher, chatbot, and admin panel for real-time dashboards. Implemented forecasting models, achieving 93% accuracy with LSTM for FY25 toy sector predictions.
+                            </p>
+                        </div>
+
+                        <!-- Exp 2 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 text-brand-600 text-xs font-bold mb-3">Jun 2024 - Jul 2024</span>
+                            <h3 class="text-xl font-bold text-dark">Machine Learning Trainee</h3>
+                            <h4 class="text-sm font-medium text-slate-500 mb-3">DRDO, New Delhi</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Developed a deep learning model for classifying encrypted data based on cipher algorithms (TDES and AES) as part of 'Cipher Algorithm Classification Using Deep Learning'.
+                            </p>
+                        </div>
+
+                        <!-- Exp 3 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 text-brand-600 text-xs font-bold mb-3">Jun 2023 - Aug 2023</span>
+                            <h3 class="text-xl font-bold text-dark">Data Integration Engineer</h3>
+                            <h4 class="text-sm font-medium text-slate-500 mb-3">NHAI, New Delhi</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Built a 'Data Integration and Management System' using Python and SQL Server. Integrated CNN for pattern recognition, streamlining large-scale infrastructure data analytics.
+                            </p>
+                        </div>
+
+                        <!-- Exp 4 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 text-brand-600 text-xs font-bold mb-3">May 2023 - Jun 2023</span>
+                            <h3 class="text-xl font-bold text-dark">Software Engineer Intern</h3>
+                            <h4 class="text-sm font-medium text-slate-500 mb-3">HEOWEB Solutions</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Developed a Python/MySQL Bank Management System handling account creation, transactions, and secure data management.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div>
+                    <h2 class="text-3xl font-bold text-dark mb-10 gs-reveal">Education</h2>
+                    <div class="relative border-l border-gray-200 ml-3 space-y-10">
+                        
+                        <!-- Ed 1 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 text-xs font-bold mb-3">2022 - 2026</span>
+                            <h3 class="text-xl font-bold text-dark">B.Tech CSE-AIML</h3>
+                            <h4 class="text-sm font-medium text-brand-600 mb-1">Sharda University, Greater Noida</h4>
+                            <p class="text-slate-500 text-sm font-semibold">CGPA: 8.808</p>
+                        </div>
+
+                        <!-- Ed 2 -->
+                        <div class="relative pl-8 timeline-item gs-reveal">
+                            <span class="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 text-xs font-bold mb-3">2021 - 2022</span>
+                            <h3 class="text-xl font-bold text-dark">Intermediate (XII)</h3>
+                            <h4 class="text-sm font-medium text-brand-600 mb-1">Kendriya Vidyalaya, New Delhi</h4>
+                            <p class="text-slate-500 text-sm font-semibold">Score: 83.80%</p>
+                        </div>
+
+                        <!-- Certs -->
+                        <div class="relative pl-8 timeline-item gs-reveal pt-6">
+                            <h3 class="text-xl font-bold text-dark mb-4">Certifications (WhiteHat Jr)</h3>
+                            <ul class="space-y-4">
+                                <li class="bg-surface p-4 rounded-xl border border-gray-100">
+                                    <h4 class="font-bold text-sm text-dark">AI & Machine Learning</h4>
+                                    <span class="text-xs text-slate-400">January 2024</span>
+                                </li>
+                                <li class="bg-surface p-4 rounded-xl border border-gray-100">
+                                    <h4 class="font-bold text-sm text-dark">Data Analyst - Space Tech</h4>
+                                    <span class="text-xs text-slate-400">October 2021</span>
+                                </li>
+                                <li class="bg-surface p-4 rounded-xl border border-gray-100">
+                                    <h4 class="font-bold text-sm text-dark">Python Programmer</h4>
+                                    <span class="text-xs text-slate-400">April 2021</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="projects" class="py-24 relative bg-surface border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Creative Portfolio</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">Showcasing my latest projects in Deep Learning, Web Development, and Data Analytics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <!-- Abstract placeholder simulating a clean image -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-blue-100 portfolio-image flex items-center justify-center">
+                            <i data-lucide="leaf" class="w-16 h-16 text-brand-200"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-300 mb-1 block">Deep Learning</span>
+                                <h3 class="text-xl font-bold mb-2">Medicinal Plant App</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">ConvNeXt Tiny CNN to classify 40+ medicinal plants with real-time camera input and UI.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-100 portfolio-image flex items-center justify-center">
+                            <i data-lucide="activity" class="w-16 h-16 text-cyan-200"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 mb-1 block">CNN / Imaging</span>
+                                <h3 class="text-xl font-bold mb-2">Teeth Cavity Detection</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">Built a CNN model to detect cavities from dental X-ray images using data augmentation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-200 portfolio-image flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-16 h-16 text-slate-300"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-1 block">Cryptography & AI</span>
+                                <h3 class="text-xl font-bold mb-2">DRDO Image Classify</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">Combined cryptography with CNN-based classification for secure defence datasets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-fuchsia-100 portfolio-image flex items-center justify-center">
+                            <i data-lucide="brain" class="w-16 h-16 text-fuchsia-200"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-300 mb-1 block">BCI Systems</span>
+                                <h3 class="text-xl font-bold mb-2">Locked-In Syndrome Eval</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">Evaluated advanced BCI systems covering EEG, EMG, tactile, and hybrid multimodal interfaces.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-100 portfolio-image flex items-center justify-center">
+                            <i data-lucide="line-chart" class="w-16 h-16 text-amber-200"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-300 mb-1 block">Data Analytics</span>
+                                <h3 class="text-xl font-bold mb-2">DPIIT Trade Analytics</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">Automated trade data fetcher, multi-model forecasting engine achieving 93% accuracy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-card bg-white shadow-sm border border-gray-100 gs-reveal">
+                    <div class="relative h-64 overflow-hidden bg-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-emerald-100 portfolio-image flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-16 h-16 text-emerald-200"></i>
+                        </div>
+                        
+                        <div class="absolute inset-0 portfolio-overlay flex items-end p-6">
+                            <div class="portfolio-content text-white">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-300 mb-1 block">Web App / Python</span>
+                                <h3 class="text-xl font-bold mb-2">Trade Data Platform</h3>
+                                <p class="text-sm text-gray-200 line-clamp-2">Flask-based web app for analyzing India’s import/export data using HSN codes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-dark text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20 gs-reveal">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's create something together.</h2>
+                    <p class="text-slate-400 text-lg mb-8 max-w-md">I am currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open.</p>
+                    <a href="mailto:deepayankv8@gmail.com" class="inline-flex items-center gap-2 text-xl font-bold hover:text-brand-400 transition-colors norebro-link pb-1">
+                        deepayankv8@gmail.com <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                
+                <div class="md:text-right flex flex-col md:items-end justify-center">
+                    <div class="space-y-4">
+                        <h4 class="text-slate-500 font-semibold uppercase tracking-wider text-sm mb-4">Connect</h4>
+                        <a href="https://github.com/Deepayan-Thakur" target="_blank" class="block text-xl font-medium hover:text-brand-400 transition-colors">GitHub</a>
+                        <a href="https://www.linkedin.com/in/deepayan-thakur-5bb2aa215/" target="_blank" class="block text-xl font-medium hover:text-brand-400 transition-colors">LinkedIn</a>
+                        <a href="tel:+918588016904" class="block text-xl font-medium hover:text-brand-400 transition-colors">+91 8588016904</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gs-reveal">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <div class="w-6 h-6 bg-brand-600 rounded flex items-center justify-center text-white text-xs font-bold">D</div>
+                    <span class="font-bold tracking-tight">Thakur.</span>
+                </div>
+                <p class="text-slate-500 text-sm">&copy; <script>document.write(new Date().getFullYear())</script> Deepayan Thakur. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-sm');
+                navbar.classList.remove('py-2');
+            } else {
+                navbar.classList.remove('shadow-sm');
+                navbar.classList.add('py-2');
+            }
+        });
+
+        // 3. Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // 4. Smooth Scrolling (Lenis - Standard for premium themes)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+
+        // 5. GSAP Animations (Softer, cleaner style for Norebro)
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Sequence
+        const tl = gsap.timeline();
+        tl.from(".hero-intro", { y: 20, opacity: 0, duration: 0.8, ease: "power2.out", delay: 0.2 })
+          .from(".hero-title", { y: "100%", duration: 1, ease: "power3.out", stagger: 0.15 }, "-=0.6")
+          .from(".hero-subtext", { y: 20, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
+          .from(".hero-btn", { y: 20, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.1 }, "-=0.6");
+
+        // Scroll Reveals (Gentle fade up)
+        gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
+            gsap.fromTo(elem, 
+                { y: 40, opacity: 0 }, 
+                {
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1, 
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%", // Triggers slightly earlier for a smoother feel
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+    </script>
+</body>
+</html>
