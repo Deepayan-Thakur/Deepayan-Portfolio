@@ -151,6 +151,76 @@
             transform: scale(1.05);
         }
 
+        /* Magnetic Image for Jelly Cards */
+        .magnetic-image {
+            will-change: transform;
+            transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.5rem;
+        }
+
+        /* Hero Images Boxed Card Style - Horizontal Overlap */
+        .hero__images {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            width: 100%;
+            max-width: 100vw;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero__image {
+            width: 160px;
+            max-width: 90vw;
+            aspect-ratio: 3/4;
+            background: var(--tw-bg-opacity,rgba(26,26,26,1));
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.25);
+            border: 3px solid #fff;
+            overflow: hidden;
+            position: relative;
+            transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            margin-left: -32px; /* 10% overlap for 160px width */
+        }
+        .hero__image:first-child {
+            margin-left: 0;
+        }
+        .hero__image:hover {
+            box-shadow: 0 16px 48px -8px rgba(255,255,255,0.10), 0 8px 32px -8px rgba(0,0,0,0.25);
+        }
+
+        @media (max-width: 1024px) {
+            .hero__image {
+                width: 110px;
+                aspect-ratio: 3/4;
+                margin-left: -14px; /* ~8% overlap for 110px width */
+            }
+        }
+        @media (max-width: 768px) {
+            .hero__images {
+                flex-direction: row;
+                max-width: 98vw;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+            .hero__image {
+                width: 60px;
+                min-width: 60px;
+                max-width: 80vw;
+                aspect-ratio: 3/4;
+                border-radius: 1rem;
+                margin-left: -6px; /* ~6% overlap for 60px width */
+            }
+            .magnetic-image {
+                border-radius: 1rem;
+            }
+        }
+
         /* Tactile click */
         a:active, button:active, .jelly-card:active {
             transform: scale(0.97) !important;
@@ -226,43 +296,28 @@
     <section id="home" class="min-h-screen pt-32 pb-12 md:pb-16 px-4 flex flex-col justify-center items-center text-center relative z-10">
         <div class="max-w-5xl mx-auto gs-reveal w-full">
             
+
             <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-4">
                 Architecting Intelligent<br>Digital Masterpieces
             </h1>
 
-            <!-- Interactive Horizontal Jelly Cards Area -->
-            <div class="flex justify-center items-center mt-12 md:mt-16 mb-12 h-40 md:h-[450px] relative z-20 w-full" id="jelly-container">
-                
-                <!-- Card 1 -->
-                <div class="jelly-card absolute w-20 h-28 md:w-56 md:h-72 rounded-xl md:rounded-[32px] overflow-hidden shadow-2xl border-2 md:border-8 border-bgDark z-10 origin-bottom bg-surfaceDark" 
-                     data-rot="-12" data-x="-260" data-y="0" data-z="10">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="AI abstract">
+            <!-- Magnetic Hero Images -->
+            <div class="hero__images flex justify-center items-center gap-4 mt-12 md:mt-16 mb-12 h-40 md:h-[450px] relative z-20 w-full">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png" class="magnetic-image" alt="Person with VR Headset m_f">
                 </div>
-                
-                <!-- Card 2 -->
-                <div class="jelly-card absolute w-20 h-32 md:w-56 md:h-80 rounded-xl md:rounded-[32px] overflow-hidden shadow-2xl border-2 md:border-8 border-bgDark z-20 origin-bottom bg-surfaceDark" 
-                     data-rot="-5" data-x="-130" data-y="-10" data-z="20">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Data security">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png" class="magnetic-image" alt="Minimalist Stone Composition m_f">
                 </div>
-
-                <!-- Card 3 (Center) -->
-                <div class="jelly-card absolute w-24 h-36 md:w-64 md:h-96 rounded-xl md:rounded-[32px] overflow-hidden shadow-2xl border-2 md:border-8 border-bgDark z-30 origin-bottom bg-surfaceDark" 
-                     data-rot="0" data-x="0" data-y="-20" data-z="30">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Analytics">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png" class="magnetic-image" alt="Whimsical Character in a Jar m_f">
                 </div>
-
-                <!-- Card 4 -->
-                <div class="jelly-card absolute w-20 h-32 md:w-56 md:h-80 rounded-xl md:rounded-[32px] overflow-hidden shadow-2xl border-2 md:border-8 border-bgDark z-20 origin-bottom bg-surfaceDark" 
-                     data-rot="5" data-x="130" data-y="-10" data-z="20">
-                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Machine Learning">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp" class="magnetic-image" alt="Three Scoops of Ice Cream on Spoons">
                 </div>
-
-                <!-- Card 5 -->
-                <div class="jelly-card absolute w-20 h-28 md:w-56 md:h-72 rounded-xl md:rounded-[32px] overflow-hidden shadow-2xl border-2 md:border-8 border-bgDark z-10 origin-bottom bg-surfaceDark" 
-                     data-rot="12" data-x="260" data-y="0" data-z="10">
-                    <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Deep Learning">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png" class="magnetic-image" alt="Green Character in Yellow Hoodie m_f">
                 </div>
-
             </div>
 
             <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-8 gs-reveal delay-200">
@@ -665,79 +720,54 @@
             );
         });
 
-        // 6. JELLY PHYSICS MOUSE HOVER LOGIC (Responsive Osty Style)
-        const jellyCards = document.querySelectorAll('.jelly-card');
+        // 6. Magnetic Hero Images Mouse Logic (Card moves, not image, direct transform)
+        const heroImages = document.querySelectorAll('.hero__image');
         const isMobile = window.innerWidth <= 768;
-        const spreadMultiplier = isMobile ? 0.35 : 1; // Compress the horizontal spread for mobile screens
-        
-        jellyCards.forEach(card => {
-            const baseX = parseFloat(card.dataset.x) * spreadMultiplier;
-            const baseY = parseFloat(card.dataset.y) * spreadMultiplier;
-            const baseRot = parseFloat(card.dataset.rot);
-            const baseZ = parseInt(card.dataset.z);
-
-            // Set initial overlapping horizontal positions
-            gsap.set(card, { x: baseX, y: baseY, rotation: baseRot, zIndex: baseZ });
-
-            if (!isMobile) {
-                // Desktop Hover interactions
-                card.addEventListener('mouseenter', () => {
-                    gsap.to(card, {
-                        scale: 1.15,
-                        zIndex: 50,
-                        rotation: 0, // Stand up straight
-                        duration: 0.8,
-                        ease: "elastic.out(1, 0.4)",
-                        overwrite: "auto",
-                        boxShadow: "0 0 50px rgba(255,255,255,0.2)",
-                        borderColor: "#FFFFFF"
+        if (!isMobile) {
+            heroImages.forEach(image => {
+                let velocity = 0, lastX = 0, lastY = 0;
+                image.addEventListener('mousemove', (e) => {
+                    const rect = image.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+                    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+                    // Calculate velocity as distance moved
+                    velocity = Math.sqrt(Math.pow(x - lastX, 2) + Math.pow(y - lastY, 2));
+                    lastX = x;
+                    lastY = y;
+                    // Animate card only, using x/y transforms
+                    gsap.to(image, {
+                        x: x * 30,
+                        y: y * 30,
+                        scale: 1 + velocity * 0.05,
+                        duration: 0.5,
+                        ease: 'expo.out',
+                        overwrite: 'auto'
                     });
                 });
-
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) - (rect.width / 2);
-                    const y = (e.clientY - rect.top) - (rect.height / 2);
-
-                    // Pull elastically towards mouse inside the card
-                    gsap.to(card, {
-                        x: baseX + x * 0.15,
-                        y: baseY + y * 0.15,
-                        rotation: x * 0.05,
-                        duration: 0.6,
-                        ease: "power2.out",
-                        overwrite: "auto"
-                    });
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    // Snap back into overlapping formation
-                    gsap.to(card, {
+                image.addEventListener('mouseleave', () => {
+                    gsap.to(image, {
+                        x: 0,
+                        y: 0,
                         scale: 1,
-                        x: baseX,
-                        y: baseY,
-                        rotation: baseRot,
-                        zIndex: baseZ,
                         duration: 1.2,
-                        ease: "elastic.out(1, 0.3)",
-                        overwrite: "auto",
-                        boxShadow: "0 20px 40px -15px rgba(0,0,0,0.5)",
-                        borderColor: "#262626"
+                        ease: 'elastic.out(1, 0.3)',
+                        overwrite: 'auto'
                     });
                 });
-            } else {
-                // Mobile: Add a subtle floating animation instead of hover physics
-                gsap.to(card, {
-                    y: baseY - 15,
-                    rotation: baseRot + (Math.random() > 0.5 ? 2 : -2),
+            });
+        } else {
+            // Mobile: Subtle floating animation
+            heroImages.forEach((image, i) => {
+                gsap.to(image, {
+                    y: (i % 2 === 0 ? -10 : 10),
                     duration: 2 + Math.random(),
                     yoyo: true,
                     repeat: -1,
-                    ease: "sine.inOut",
+                    ease: 'sine.inOut',
                     delay: Math.random()
                 });
-            }
-        });
+            });
+        }
 
     </script>
 </body>
