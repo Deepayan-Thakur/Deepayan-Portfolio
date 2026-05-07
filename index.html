@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepayan Thakur | AI & ML Portfolio</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -52,7 +54,7 @@
         :root {
             cursor: none;
         }
-        
+
         body {
             background-color: #080808;
             color: #FFFFFF;
@@ -62,11 +64,25 @@
         }
 
         /* Lenis Smooth Scroll requires these */
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
 
         /* Custom Cursor */
         .cursor-dot {
@@ -83,6 +99,7 @@
             transition: width 0.2s, height 0.2s, background-color 0.2s;
             mix-blend-mode: difference;
         }
+
         .cursor-outline {
             width: 40px;
             height: 40px;
@@ -97,8 +114,12 @@
             transition: width 0.2s, height 0.2s, border-color 0.2s;
             mix-blend-mode: difference;
         }
-        
-        body.hovering .cursor-dot { width: 0; height: 0; }
+
+        body.hovering .cursor-dot {
+            width: 0;
+            height: 0;
+        }
+
         body.hovering .cursor-outline {
             width: 60px;
             height: 60px;
@@ -111,6 +132,7 @@
             position: relative;
             transition: color 0.3s ease;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -123,7 +145,9 @@
             transform: translateX(-50%) scale(0);
             transition: transform 0.3s ease;
         }
-        .nav-link:hover::after, .nav-link.active::after {
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
             transform: translateX(-50%) scale(1);
         }
 
@@ -134,19 +158,22 @@
             transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform, opacity;
         }
+
         .smooth-section.is-visible {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
-        
+
         /* Image Hovers */
         .osty-img-wrapper {
             overflow: hidden;
             border-radius: 24px;
         }
+
         .osty-img-wrapper img {
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .group:hover .osty-img-wrapper img {
             transform: scale(1.05);
         }
@@ -173,34 +200,40 @@
             margin: 0 auto;
             position: relative;
         }
+
         .hero__image {
             width: 160px;
             max-width: 90vw;
             aspect-ratio: 3/4;
-            background: var(--tw-bg-opacity,rgba(26,26,26,1));
+            background: var(--tw-bg-opacity, rgba(26, 26, 26, 1));
             border-radius: 1.5rem;
-            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.25);
             border: 3px solid #fff;
             overflow: hidden;
             position: relative;
             transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform;
-            margin-left: -32px; /* 10% overlap for 160px width */
+            margin-left: -32px;
+            /* 10% overlap for 160px width */
         }
+
         .hero__image:first-child {
             margin-left: 0;
         }
+
         .hero__image:hover {
-            box-shadow: 0 16px 48px -8px rgba(255,255,255,0.10), 0 8px 32px -8px rgba(0,0,0,0.25);
+            box-shadow: 0 16px 48px -8px rgba(255, 255, 255, 0.10), 0 8px 32px -8px rgba(0, 0, 0, 0.25);
         }
 
         @media (max-width: 1024px) {
             .hero__image {
                 width: 110px;
                 aspect-ratio: 3/4;
-                margin-left: -14px; /* ~8% overlap for 110px width */
+                margin-left: -14px;
+                /* ~8% overlap for 110px width */
             }
         }
+
         @media (max-width: 768px) {
             .hero__images {
                 flex-direction: row;
@@ -208,29 +241,37 @@
                 overflow-x: auto;
                 padding-bottom: 1rem;
             }
+
             .hero__image {
                 width: 60px;
                 min-width: 60px;
                 max-width: 80vw;
                 aspect-ratio: 3/4;
                 border-radius: 1rem;
-                margin-left: -6px; /* ~6% overlap for 60px width */
+                margin-left: -6px;
+                /* ~6% overlap for 60px width */
             }
+
             .magnetic-image {
                 border-radius: 1rem;
             }
         }
 
         /* Tactile click */
-        a:active, button:active, .jelly-card:active {
+        a:active,
+        button:active,
+        .jelly-card:active {
             transform: scale(0.97) !important;
             transition: transform 0.1s;
         }
 
         /* Hide scrollbar */
-        ::-webkit-scrollbar { display: none; }
+        ::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
+
 <body class="selection:bg-gray-200 selection:text-black">
 
     <!-- Custom Cursor -->
@@ -238,18 +279,23 @@
     <div class="cursor-outline hidden md:block"></div>
 
     <!-- Global Background Texture & Radial Glow -->
-    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] mix-blend-screen" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
-    <div class="fixed top-0 left-0 w-full h-screen pointer-events-none z-0" style="background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 0%, transparent 60%);"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] mix-blend-screen"
+        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');">
+    </div>
+    <div class="fixed top-0 left-0 w-full h-screen pointer-events-none z-0"
+        style="background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 0%, transparent 60%);"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 py-4 bg-bgDark/70 backdrop-blur-xl border-b border-white/5" id="navbar">
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4 bg-bgDark/70 backdrop-blur-xl border-b border-white/5"
+        id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#home" class="text-2xl font-extrabold tracking-tight text-white flex items-center hover-target">
+                <a href="#home"
+                    class="text-2xl font-extrabold tracking-tight text-white flex items-center hover-target">
                     deepayan<span class="text-gray-500">.</span>
                 </a>
-                
+
                 <!-- Desktop Links -->
                 <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm">
                     <a href="#home" class="nav-link text-white hover-target">Index</a>
@@ -258,20 +304,23 @@
                     <a href="#stats" class="nav-link text-gray-400 hover:text-white hover-target">Stats</a>
                     <a href="#about" class="nav-link text-gray-400 hover:text-white hover-target">Profile</a>
                 </div>
-                
+
                 <!-- Right Action -->
                 <div class="hidden lg:flex items-center space-x-4">
-                    <a href="https://github.com/Deepayan-Thakur" target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-surfaceAlt hover-target">
+                    <a href="https://github.com/Deepayan-Thakur" target="_blank"
+                        class="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-surfaceAlt hover-target">
                         <i data-lucide="github" class="w-5 h-5"></i>
                     </a>
-                    <a href="#contact" class="px-6 py-2.5 bg-white text-black rounded-full font-bold text-sm hover:bg-gray-200 transition-colors hover-target">
-                        Contact
+                    <a href="#contact"
+                        class="px-6 py-2.5 bg-white text-black rounded-full font-bold text-sm hover:bg-gray-200 transition-colors hover-target">
+                        Contact Me
                     </a>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="lg:hidden flex items-center gap-4">
-                    <a href="https://github.com/Deepayan-Thakur" target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-surfaceAlt">
+                    <a href="https://github.com/Deepayan-Thakur" target="_blank"
+                        class="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-surfaceAlt">
                         <i data-lucide="github" class="w-5 h-5"></i>
                     </a>
                     <button id="mobile-menu-btn" class="p-2 text-white bg-surfaceAlt rounded-full hover-target">
@@ -281,7 +330,8 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden hidden bg-bgDark border-t border-white/10 absolute w-full left-0 top-full shadow-2xl">
+        <div id="mobile-menu"
+            class="lg:hidden hidden bg-bgDark border-t border-white/10 absolute w-full left-0 top-full shadow-2xl">
             <div class="px-4 pt-6 pb-8 space-y-6 flex flex-col text-center">
                 <a href="#home" class="mobile-link text-xl font-bold text-white hover:text-gray-400">Index</a>
                 <a href="#ai-ml" class="mobile-link text-xl font-bold text-white hover:text-gray-400">AI / ML</a>
@@ -292,85 +342,190 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Dark Theme) -->
-    <section id="home" class="min-h-screen pt-32 pb-12 md:pb-16 px-4 flex flex-col justify-center items-center text-center relative z-10">
-        <div class="max-w-5xl mx-auto gs-reveal w-full">
-            
+    <!-- HERO SECTION -->
+    <section id="home"
+        class="relative min-h-screen overflow-hidden bg-black px-6 pt-32 pb-20 flex items-center justify-center">
 
-            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-4">
-                Architecting Intelligent<br>Digital Masterpieces
+        <!-- BIG GRID BACKGROUND -->
+        <div class="absolute inset-0 opacity-[0.08]
+        bg-[linear-gradient(to_right,#22c55e_1px,transparent_1px),linear-gradient(to_bottom,#22c55e_1px,transparent_1px)]
+        bg-[size:120px_120px]">
+        </div>
+
+        <!-- EXTRA LARGE GRID
+        <div class="absolute inset-0 opacity-[0.04]
+        bg-[linear-gradient(to_right,#4ade80_2px,transparent_2px),linear-gradient(to_bottom,#4ade80_2px,transparent_2px)]
+        bg-[size:260px_260px]">
+        </div> -->
+
+        <!-- SCATTERED GREEN GLOW -->
+        <div class="absolute top-[-250px] left-[-200px]
+        w-[700px] h-[700px]
+        bg-green-500/20
+        rounded-full
+        blur-[180px] pointer-events-none">
+        </div>
+
+        <!-- LIME GREEN GLOW -->
+        <div class="absolute bottom-[-300px] right-[-250px]
+        w-[750px] h-[750px]
+        bg-lime-400/15
+        rounded-full
+        blur-[200px] pointer-events-none">
+        </div>
+
+        <!-- CENTER AMBIENT GLOW -->
+        <div class="absolute top-[30%] left-[50%]
+        -translate-x-1/2 -translate-y-1/2
+        w-[500px] h-[500px]
+        bg-emerald-400/10
+        rounded-full
+        blur-[140px] pointer-events-none">
+        </div>
+
+        <!-- RADIAL OVERLAY -->
+        <div class="absolute inset-0
+        bg-[radial-gradient(circle_at_center,rgba(74,222,128,0.12),transparent_65%)] pointer-events-none">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto text-center">
+
+            <!-- SMALL BADGE -->
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-400/20 bg-green-500/5 backdrop-blur-md mb-8">
+
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+
+                <span class="text-sm tracking-wide text-gray-300">
+                    AI Engineer • Data Scientist • ML Researcher
+                </span>
+            </div>
+
+            <!-- MAIN HEADING -->
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight leading-[0.95] text-white mb-8">
+
+                Building
+
+                <span class="bg-gradient-to-r from-green-400 via-emerald-300 to-lime-400 bg-clip-text text-transparent">
+                    Intelligent
+                </span>
+
+                <br>
+
+                Digital Experiences
             </h1>
 
-            <!-- Magnetic Hero Images -->
-            <div class="hero__images flex justify-center items-center gap-4 mt-12 md:mt-16 mb-12 h-40 md:h-[450px] relative z-20 w-full">
-                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
-                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png" class="magnetic-image" alt="Person with VR Headset m_f">
-                </div>
-                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
-                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png" class="magnetic-image" alt="Minimalist Stone Composition m_f">
-                </div>
-                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
-                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png" class="magnetic-image" alt="Whimsical Character in a Jar m_f">
-                </div>
-                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
-                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp" class="magnetic-image" alt="Three Scoops of Ice Cream on Spoons">
-                </div>
-                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
-                    <img decoding="async" src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png" class="magnetic-image" alt="Green Character in Yellow Hoodie m_f">
-                </div>
-            </div>
-
-            <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-8 gs-reveal delay-200">
-                Deepayan Thakur. Data Scientist & ML Engineer based in India.<br class="hidden md:block"> Building intelligent systems and data-driven solutions that solve real-world problems.
+            <!-- SUB TEXT -->
+            <p class="max-w-3xl mx-auto text-gray-400 text-base md:text-xl leading-relaxed mb-12 font-light">
+                Hi, I’m <span class="text-white font-medium">Deepayan Thakur</span> -
+                a Machine Learning Engineer & Data Scientist passionate about creating
+                AI systems, forecasting platforms, NLP pipelines, and futuristic
+                intelligent products that solve real-world problems.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 gs-reveal delay-300">
-                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] hover-target">
-                    Contact Me
+            <!-- Magnetic Hero Images -->
+            <div
+                class="hero__images flex justify-center items-center gap-4 mt-12 md:mt-16 mb-12 h-40 md:h-[250px] relative z-20 w-full">
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async"
+                        src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png"
+                        class="magnetic-image" alt="Person with VR Headset m_f">
+                </div>
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.0; --velocity: 0.00;">
+                    <img decoding="async"
+                        src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png"
+                        class="magnetic-image" alt="Minimalist Stone Composition m_f">
+                </div>
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async"
+                        src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png"
+                        class="magnetic-image" alt="Whimsical Character in a Jar m_f">
+                </div>
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async"
+                        src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp"
+                        class="magnetic-image" alt="Three Scoops of Ice Cream on Spoons">
+                </div>
+                <div class="hero__image" style="--offsetX: 0.00; --offsetY: 0.00; --velocity: 0.00;">
+                    <img decoding="async"
+                        src="https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"
+                        class="magnetic-image" alt="Green Character in Yellow Hoodie m_f">
+                </div>
+            </div>
+
+             <!-- CTA BUTTONS -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
+
+                <a href="#projects"
+                    class="group relative overflow-hidden px-8 py-4 rounded-full bg-white text-black font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(74,222,128,0.25)]">
+
+                    <span class="relative z-10">Explore Projects</span>
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-green-400 to-lime-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300">
+                    </div>
                 </a>
-                <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 bg-surfaceDark text-white rounded-full font-bold hover:bg-borderDark transition-colors border border-borderDark hover-target">
-                    Discover Work
+
+                <a href="#contact"
+                    class="px-8 py-4 rounded-full border border-green-400/20 bg-white/5 backdrop-blur-md text-white font-semibold hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                    Let’s Connect
                 </a>
             </div>
+
         </div>
     </section>
 
     <!-- AI / ML Specific Section (Dark Grey Texture) -->
-    <section id="ai-ml" class="py-20 md:py-32 px-4 bg-surfaceDark border-y border-borderDark relative z-10 smooth-section">
+    <section id="ai-ml"
+        class="py-20 md:py-32 px-4 bg-surfaceDark border-y border-borderDark relative z-10 smooth-section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 md:mb-16 gs-reveal">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Intelligence Architecture</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Intelligence Architecture
+                </h2>
                 <p class="text-gray-400">Specialized domains in Artificial Intelligence and Machine Learning.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
+                <div
+                    class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
                     <i data-lucide="brain-circuit" class="w-10 h-10 text-white mb-6"></i>
                     <h3 class="text-2xl font-bold mb-3 text-white">Deep Learning</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Architecting Convolutional Neural Networks (CNNs) for complex image classification and pattern recognition tasks.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Architecting Convolutional Neural Networks
+                        (CNNs) for complex image classification and pattern recognition tasks.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ConvNeXt</span>
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ResNet</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ConvNeXt</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ResNet</span>
                     </div>
                 </div>
 
-                <div class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal delay-100 group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
+                <div
+                    class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal delay-100 group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
                     <i data-lucide="line-chart" class="w-10 h-10 text-white mb-6"></i>
                     <h3 class="text-2xl font-bold mb-3 text-white">Predictive Analytics</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Building time-series forecasting engines for large-scale economic data, utilizing statistical and neural models.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Building time-series forecasting engines for
+                        large-scale economic data, utilizing statistical and neural models.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">LSTM</span>
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ARIMA</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">LSTM</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">ARIMA</span>
                     </div>
                 </div>
 
-                <div class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal delay-200 group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
+                <div
+                    class="bg-surfaceAlt p-8 rounded-[2rem] border border-borderDark gs-reveal delay-200 group hover:border-gray-500 transition-colors shadow-osty-dark hover-target">
                     <i data-lucide="scan-face" class="w-10 h-10 text-white mb-6"></i>
                     <h3 class="text-2xl font-bold mb-3 text-white">Computer Vision</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Implementing real-time data augmentation and binary classification for medical imaging and cryptography.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Implementing real-time data augmentation and
+                        binary classification for medical imaging and cryptography.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">Data Augmentation</span>
-                        <span class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">OpenCV</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">Data
+                            Augmentation</span>
+                        <span
+                            class="px-3 py-1 bg-surfaceDark border border-borderDark text-white rounded-full text-xs font-semibold">OpenCV</span>
                     </div>
                 </div>
             </div>
@@ -378,59 +533,90 @@
     </section>
 
     <!-- Projects Section (White Aesthetic) -->
-    <section id="projects" class="py-20 md:py-32 px-4 bg-bgLight rounded-t-[3rem] md:rounded-t-[4rem] relative z-20 mt-[-2rem] smooth-section text-textMain">
+    <section id="projects"
+        class="py-20 md:py-32 px-4 bg-bgLight rounded-t-[3rem] md:rounded-t-[4rem] relative z-20 mt-[-2rem] smooth-section text-textMain">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 md:mb-16 gs-reveal">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-textMain">Latest Masterpieces</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-textMain">Latest Masterpieces
+                </h2>
                 <p class="text-textMuted">A collection of AI models, web apps, and data analytics platforms.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 <!-- Project 1 -->
                 <a href="#" class="group block gs-reveal hover-target">
-                    <div class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light">
-                        <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=1200&auto=format&fit=crop" alt="Medicinal Plant App" class="opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">Web & CNN</div>
+                    <div
+                        class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light">
+                        <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=1200&auto=format&fit=crop"
+                            alt="Medicinal Plant App" class="opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">
+                            Web & CNN</div>
                     </div>
-                    <h3 class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">Medicinal Plant Detection</h3>
-                    <p class="text-textMuted line-clamp-2">Developed a Web Based app utilizing ConvNeXt Tiny CNN to classify 40+ medicinal plants with real-time camera input and health benefits UI.</p>
+                    <h3
+                        class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                        Medicinal Plant Detection</h3>
+                    <p class="text-textMuted line-clamp-2">Developed a Web Based app utilizing ConvNeXt Tiny CNN to
+                        classify 40+ medicinal plants with real-time camera input and health benefits UI.</p>
                 </a>
 
                 <!-- Project 2 -->
                 <a href="#" class="group block gs-reveal md:delay-100 hover-target">
-                    <div class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light hover-target">
-                        <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1200&auto=format&fit=crop" alt="Cavity Detection" class="opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">Imaging</div>
+                    <div
+                        class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light hover-target">
+                        <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1200&auto=format&fit=crop"
+                            alt="Cavity Detection" class="opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">
+                            Imaging</div>
                     </div>
-                    <h3 class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">Teeth Cavity Detection</h3>
-                    <p class="text-textMuted line-clamp-2">Built a CNN model to detect cavities from dental X-ray images. Used data augmentation and binary classification for early detection.</p>
+                    <h3
+                        class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                        Teeth Cavity Detection</h3>
+                    <p class="text-textMuted line-clamp-2">Built a CNN model to detect cavities from dental X-ray
+                        images. Used data augmentation and binary classification for early detection.</p>
                 </a>
 
                 <!-- Project 3 -->
                 <a href="#" class="group block gs-reveal hover-target">
-                    <div class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light">
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" alt="DRDO Security" class="opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">Crypto / DL</div>
+                    <div
+                        class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
+                            alt="DRDO Security" class="opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">
+                            Crypto / DL</div>
                     </div>
-                    <h3 class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">DRDO Image Classify</h3>
-                    <p class="text-textMuted line-clamp-2">Combined cryptographic techniques with CNN-based classification for secure image transmission. Ensured data integrity in defence datasets.</p>
+                    <h3
+                        class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                        DRDO Image Classify</h3>
+                    <p class="text-textMuted line-clamp-2">Combined cryptographic techniques with CNN-based
+                        classification for secure image transmission. Ensured data integrity in defence datasets.</p>
                 </a>
 
                 <!-- Project 4 -->
                 <a href="#" class="group block gs-reveal md:delay-100 hover-target">
-                    <div class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light hover-target">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="DPIIT Analytics" class="opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">Forecasting</div>
+                    <div
+                        class="osty-img-wrapper aspect-[4/3] bg-bgGray border border-borderLight mb-6 relative shadow-osty-light hover-target">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
+                            alt="DPIIT Analytics" class="opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide text-textMain border border-borderLight shadow-sm">
+                            Forecasting</div>
                     </div>
-                    <h3 class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">Trade Analytics & Forecast</h3>
-                    <p class="text-textMuted line-clamp-2">DPIIT project. Automated trade data fetcher, multi-model forecasting engine (ARIMA, Prophet) achieving 93% accuracy for FY25.</p>
+                    <h3
+                        class="text-2xl font-bold tracking-tight mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                        Trade Analytics & Forecast</h3>
+                    <p class="text-textMuted line-clamp-2">DPIIT project. Automated trade data fetcher, multi-model
+                        forecasting engine (ARIMA, Prophet) achieving 93% accuracy for FY25.</p>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Coding Stats & Blogs Section (Light Grey Aesthetic) -->
-    <section id="stats" class="py-20 md:py-32 px-4 bg-bgGray border-t border-borderLight relative z-20 smooth-section text-textMain">
+    <section id="stats"
+        class="py-20 md:py-32 px-4 bg-bgGray border-t border-borderLight relative z-20 smooth-section text-textMain">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 md:mb-16 gs-reveal">
                 <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-textMain">Metrics & Logs</h2>
@@ -440,39 +626,55 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Stats Grid -->
                 <div class="grid grid-cols-2 gap-4 gs-reveal">
-                    <div class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <i data-lucide="github" class="w-8 h-8 text-textMain mb-3"></i>
                         <h4 class="text-2xl md:text-3xl font-extrabold mb-1 text-textMain">1,250+</h4>
-                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Contributions</p>
+                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Contributions
+                        </p>
                     </div>
-                    <div class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <i data-lucide="code-2" class="w-8 h-8 text-textMain mb-3"></i>
                         <h4 class="text-2xl md:text-3xl font-extrabold mb-1 text-textMain">200+</h4>
-                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Problems Solved</p>
+                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Problems
+                            Solved</p>
                     </div>
-                    <div class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <i data-lucide="target" class="w-8 h-8 text-textMain mb-3"></i>
                         <h4 class="text-2xl md:text-3xl font-extrabold mb-1 text-textMain">93%</h4>
-                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Model Accuracy</p>
+                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Model
+                            Accuracy</p>
                     </div>
-                    <div class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-bgLight p-6 rounded-[1.5rem] border border-borderLight flex flex-col justify-center items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <i data-lucide="layers" class="w-8 h-8 text-textMain mb-3"></i>
                         <h4 class="text-2xl md:text-3xl font-extrabold mb-1 text-textMain">40+</h4>
-                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Plant Classes</p>
+                        <p class="text-[10px] md:text-xs text-textMuted font-bold uppercase tracking-wide">Plant Classes
+                        </p>
                     </div>
                 </div>
 
                 <!-- Blogs/Logs -->
                 <div class="space-y-4 gs-reveal lg:delay-100">
-                    <a href="#" class="block bg-bgLight p-6 rounded-[1.5rem] border border-borderLight hover:border-gray-400 transition-colors shadow-sm group hover-target">
-                        <span class="text-xs text-textMuted font-bold uppercase tracking-wide block mb-2">Technical Log</span>
-                        <h4 class="text-xl font-bold mb-2 text-textMain group-hover:text-textMuted transition-colors">Architecting a ConvNeXt Tiny Classifier</h4>
-                        <p class="text-sm text-textMuted">A deep dive into optimizing lightweight CNNs for real-time mobile inference.</p>
+                    <a href="#"
+                        class="block bg-bgLight p-6 rounded-[1.5rem] border border-borderLight hover:border-gray-400 transition-colors shadow-sm group hover-target">
+                        <span class="text-xs text-textMuted font-bold uppercase tracking-wide block mb-2">Technical
+                            Log</span>
+                        <h4 class="text-xl font-bold mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                            Architecting a ConvNeXt Tiny Classifier</h4>
+                        <p class="text-sm text-textMuted">A deep dive into optimizing lightweight CNNs for real-time
+                            mobile inference.</p>
                     </a>
-                    <a href="#" class="block bg-bgLight p-6 rounded-[1.5rem] border border-borderLight hover:border-gray-400 transition-colors shadow-sm group hover-target">
-                        <span class="text-xs text-textMuted font-bold uppercase tracking-wide block mb-2">Case Study</span>
-                        <h4 class="text-xl font-bold mb-2 text-textMain group-hover:text-textMuted transition-colors">Time Series Forecasting with Prophet & LSTM</h4>
-                        <p class="text-sm text-textMuted">Comparing statistical approaches vs deep learning on DPIIT trade data analytics.</p>
+                    <a href="#"
+                        class="block bg-bgLight p-6 rounded-[1.5rem] border border-borderLight hover:border-gray-400 transition-colors shadow-sm group hover-target">
+                        <span class="text-xs text-textMuted font-bold uppercase tracking-wide block mb-2">Case
+                            Study</span>
+                        <h4 class="text-xl font-bold mb-2 text-textMain group-hover:text-textMuted transition-colors">
+                            Time Series Forecasting with Prophet & LSTM</h4>
+                        <p class="text-sm text-textMuted">Comparing statistical approaches vs deep learning on DPIIT
+                            trade data analytics.</p>
                     </a>
                 </div>
             </div>
@@ -480,35 +682,50 @@
     </section>
 
     <!-- Profile & Certifications Section (White Aesthetic) -->
-    <section id="about" class="py-20 md:py-32 px-4 bg-bgLight border-t border-borderLight relative z-20 smooth-section text-textMain">
+    <section id="about"
+        class="py-20 md:py-32 px-4 bg-bgLight border-t border-borderLight relative z-20 smooth-section text-textMain">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
-                
+
                 <!-- About Info -->
                 <div class="gs-reveal">
                     <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-6 text-textMain">About Me</h2>
                     <p class="text-textMuted text-base md:text-lg leading-relaxed mb-6">
-                        Pursuing a B.Tech in CSE (AI & ML) as a specialization from Sharda University. My journey is defined by a passion for scalable AI solutions and solving real-world problems.
+                        Pursuing a B.Tech in CSE (AI & ML) as a specialization from Sharda University. My journey is
+                        defined by a passion for scalable AI solutions and solving real-world problems.
                     </p>
                     <p class="text-textMuted text-base md:text-lg leading-relaxed mb-8">
-                        With hands-on experience from DPIIT, DRDO, and NHAI internships, I am skilled in Python, Deep Learning, and Data Science. I am dedicated and eager to contribute to an innovative team.
+                        With hands-on experience from DPIIT, DRDO, and NHAI internships, I am skilled in Python, Deep
+                        Learning, and Data Science. I am dedicated and eager to contribute to an innovative team.
                     </p>
 
                     <div class="flex flex-wrap gap-3" id="skills">
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Python</span>
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">SQL</span>
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Java & C</span>
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">HTML & CSS</span>
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Deep Learning</span>
-                        <span class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Data Analytics</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Python</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">SQL</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Java
+                            & C</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">HTML
+                            & CSS</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Deep
+                            Learning</span>
+                        <span
+                            class="px-4 py-2 bg-bgLight border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain shadow-sm">Data
+                            Analytics</span>
                     </div>
                 </div>
 
                 <!-- Education & Certs -->
                 <div class="space-y-6">
-                    <div class="bg-bgLight border border-borderLight p-6 md:p-8 rounded-3xl shadow-osty-light gs-reveal hover-target">
+                    <div
+                        class="bg-bgLight border border-borderLight p-6 md:p-8 rounded-3xl shadow-osty-light gs-reveal hover-target">
                         <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-bgGray rounded-full flex items-center justify-center text-textMain border border-borderLight">
+                            <div
+                                class="w-12 h-12 bg-bgGray rounded-full flex items-center justify-center text-textMain border border-borderLight">
                                 <i data-lucide="graduation-cap"></i>
                             </div>
                             <h3 class="text-xl font-bold text-textMain">Academics</h3>
@@ -536,18 +753,26 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <div class="bg-bgLight border border-borderLight p-6 md:p-8 rounded-3xl shadow-osty-light gs-reveal hover-target lg:delay-100">
+
+                    <div
+                        class="bg-bgLight border border-borderLight p-6 md:p-8 rounded-3xl shadow-osty-light gs-reveal hover-target lg:delay-100">
                         <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-bgGray rounded-full flex items-center justify-center text-textMain border border-borderLight">
+                            <div
+                                class="w-12 h-12 bg-bgGray rounded-full flex items-center justify-center text-textMain border border-borderLight">
                                 <i data-lucide="award"></i>
                             </div>
                             <h3 class="text-xl font-bold text-textMain">Verifications</h3>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">AI & Machine Learning</span>
-                            <span class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">Data Analyst - Space Tech</span>
-                            <span class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">Python Programmer</span>
+                            <span
+                                class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">AI
+                                & Machine Learning</span>
+                            <span
+                                class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">Data
+                                Analyst - Space Tech</span>
+                            <span
+                                class="px-3 py-1 bg-bgGray border border-borderLight rounded-full text-xs font-bold text-textMuted">Python
+                                Programmer</span>
                         </div>
                     </div>
                 </div>
@@ -557,68 +782,94 @@
     </section>
 
     <!-- Experience Section (Light Grey Aesthetic) -->
-    <section id="experience" class="py-20 md:py-32 px-4 bg-bgGray border-t border-borderLight relative z-20 smooth-section text-textMain">
+    <section id="experience"
+        class="py-20 md:py-32 px-4 bg-bgGray border-t border-borderLight relative z-20 smooth-section text-textMain">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12 md:mb-16 gs-reveal">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-textMain">Professional Journey</h2>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-textMain">Professional Journey
+                </h2>
             </div>
 
             <div class="space-y-6">
                 <!-- Exp 1 -->
-                <div class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
+                <div
+                    class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                         <h3 class="text-xl md:text-2xl font-bold text-textMain">Data Analyst Intern</h3>
-                        <span class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun '25 - Aug '25</span>
+                        <span
+                            class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun
+                            '25 - Aug '25</span>
                     </div>
                     <p class="text-textMain font-medium mb-3">DPIIT, New Delhi</p>
-                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Developed an automated HSN-based Trade Data Fetcher, chatbot, and dashboards. Implemented forecasting models (LSTM) achieving 93% accuracy for FY25 toy sector predictions.</p>
+                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Developed an automated HSN-based
+                        Trade Data Fetcher, chatbot, and dashboards. Implemented forecasting models (LSTM) achieving 93%
+                        accuracy for FY25 toy sector predictions.</p>
                 </div>
 
                 <!-- Exp 2 -->
-                <div class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
+                <div
+                    class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                         <h3 class="text-xl md:text-2xl font-bold text-textMain">Machine Learning Trainee</h3>
-                        <span class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun '24 - Jul '24</span>
+                        <span
+                            class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun
+                            '24 - Jul '24</span>
                     </div>
                     <p class="text-textMain font-medium mb-3">DRDO, New Delhi</p>
-                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Focused on the development of a deep learning model for classifying encrypted data based on cipher algorithms, including TDES and AES, as part of 'Cipher Algorithm Classification Using Deep Learning'.</p>
+                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Focused on the development of a deep
+                        learning model for classifying encrypted data based on cipher algorithms, including TDES and
+                        AES, as part of 'Cipher Algorithm Classification Using Deep Learning'.</p>
                 </div>
 
                 <!-- Exp 3 -->
-                <div class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
+                <div
+                    class="bg-bgLight border border-borderLight p-6 md:p-10 rounded-[2rem] hover:shadow-md transition-shadow gs-reveal shadow-sm hover-target">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                         <h3 class="text-xl md:text-2xl font-bold text-textMain">Data Integration Engineer</h3>
-                        <span class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun '23 - Aug '23</span>
+                        <span
+                            class="mt-2 md:mt-0 px-4 py-1.5 bg-bgGray border border-borderLight rounded-full text-xs md:text-sm font-bold text-textMain w-fit">Jun
+                            '23 - Aug '23</span>
                     </div>
                     <p class="text-textMain font-medium mb-3">NHAI, New Delhi</p>
-                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Developed a 'Data Integration and Management System' using Python and SQL Server. Integrated CNN for pattern recognition, streamlining large-scale infrastructure data analytics.</p>
+                    <p class="text-textMuted text-sm md:text-base leading-relaxed">Developed a 'Data Integration and
+                        Management System' using Python and SQL Server. Integrated CNN for pattern recognition,
+                        streamlining large-scale infrastructure data analytics.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer / Contact (Dark Aesthetic) -->
-    <footer id="contact" class="py-20 md:py-24 px-4 bg-bgDark text-white rounded-t-[3rem] md:rounded-t-[4rem] text-center border-t border-borderDark relative z-30 mt-[-2rem] smooth-section">
+    <footer id="contact"
+        class="py-20 md:py-24 px-4 bg-bgDark text-white rounded-t-[3rem] md:rounded-t-[4rem] text-center border-t border-borderDark relative z-30 mt-[-2rem] smooth-section">
         <div class="max-w-4xl mx-auto gs-reveal">
             <h2 class="text-4xl md:text-8xl font-extrabold tracking-tighter mb-6 md:mb-8 text-white">Let's talk.</h2>
             <p class="text-gray-400 text-base md:text-xl mb-10 md:mb-12 max-w-2xl mx-auto px-4">
-                I am currently open to new opportunities. If you have a project or just want to say hi, my inbox is always open.
+                I am currently open to new opportunities. If you have a project or just want to say hi, my inbox is
+                always open.
             </p>
-            
-            <a href="mailto:deepayankv8@gmail.com" class="inline-block w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black rounded-full font-bold text-base md:text-lg hover:bg-gray-200 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.15)] hover-target">
+
+            <a href="mailto:deepayankv8@gmail.com"
+                class="inline-block w-full sm:w-auto px-10 py-4 md:py-5 bg-white text-black rounded-full font-bold text-base md:text-lg hover:bg-gray-200 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.15)] hover-target">
                 Contact Me
             </a>
 
-            <div class="mt-16 md:mt-24 border-t border-borderDark pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 font-medium gap-6">
+            <div
+                class="mt-16 md:mt-24 border-t border-borderDark pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 font-medium gap-6">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-surfaceDark border border-borderDark text-white rounded-full flex items-center justify-center font-bold text-sm">d.</div>
+                    <div
+                        class="w-8 h-8 bg-surfaceDark border border-borderDark text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        d.</div>
                     <span class="text-white">Deepayan Thakur</span>
                 </div>
-                
+
                 <div class="flex items-center gap-6">
-                    <a href="https://github.com/Deepayan-Thakur" target="_blank" class="hover:text-white transition-colors hover-target">GitHub</a>
-                    <a href="https://www.linkedin.com/in/deepayan-thakur-5bb2aa215/" target="_blank" class="hover:text-white transition-colors hover-target">LinkedIn</a>
-                    <a href="mailto:deepayankv8@gmail.com" class="hover:text-white transition-colors hover-target">Gmail</a>
+                    <a href="https://github.com/Deepayan-Thakur" target="_blank"
+                        class="hover:text-white transition-colors hover-target">GitHub</a>
+                    <a href="https://www.linkedin.com/in/deepayan-thakur-5bb2aa215/" target="_blank"
+                        class="hover:text-white transition-colors hover-target">LinkedIn</a>
+                    <a href="mailto:deepayankv8@gmail.com"
+                        class="hover:text-white transition-colors hover-target">Gmail</a>
                 </div>
             </div>
         </div>
@@ -639,10 +890,10 @@
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
                 const posY = e.clientY;
-                
+
                 dot.style.left = `${posX}px`;
                 dot.style.top = `${posY}px`;
-                
+
                 outline.animate({
                     left: `${posX}px`,
                     top: `${posY}px`
@@ -673,7 +924,7 @@
         // 4. Smooth Scrolling (Lenis)
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
             smooth: true,
@@ -703,13 +954,13 @@
         });
 
         // Standard Reveals
-        gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
-            gsap.fromTo(elem, 
-                { y: 40, opacity: 0 }, 
+        gsap.utils.toArray('.gs-reveal').forEach(function (elem) {
+            gsap.fromTo(elem,
+                { y: 40, opacity: 0 },
                 {
-                    y: 0, 
-                    opacity: 1, 
-                    duration: 1, 
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: elem,
@@ -771,4 +1022,5 @@
 
     </script>
 </body>
+
 </html>
